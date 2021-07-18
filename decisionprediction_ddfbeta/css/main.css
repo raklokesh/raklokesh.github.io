@@ -1,0 +1,205 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    font-size: 12pt;
+
+    background-color: LightGray;
+
+    height: 29.7cm;
+    width: 21cm;
+
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.page {
+        width: 21cm;
+        min-height: 29.7cm;
+        padding: 2cm;
+        margin: 1cm auto;
+        background: white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+h1 {
+    font-family: "Segoe UI";
+    text-align: center;
+    font-size: 18pt;
+}
+
+p {
+    font-family: "Times New Roman", serif;
+    font-size: 12pt;
+    text-align: justify;
+    text-justify: auto;
+    line-height: 1.4;
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+}
+
+.panelcontainer {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display:flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    align-items: center;
+    margin-top: 12pt;
+    justify-content: space-evenly;
+}
+
+.panelitem{
+    position: relative;
+
+    float: left;
+    padding: 5px;
+}
+
+.panelcontainerscrollable {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display:flex;
+
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    height: 180px;
+    align-items: center;
+    margin-top: 12pt;
+}
+
+.panelcontainerscrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.panelscrollableitem{
+    display: inline-block;
+    padding: 5px;
+}
+
+panel_caption {
+    font-family: "Times New Roman", serif;
+    font-size: 11pt;
+    text-align: justify;
+    text-justify: auto;
+    line-height: 1.4;
+    padding: 0;
+}
+
+.figure_label_box {
+    position: absolute;
+    top: -5pt;
+    left: -10pt;
+    z-index: 1;
+}
+
+figure_label_text{
+    font-size: 16pt;
+}
+
+.figure_label_box1 {
+    position: absolute;
+    top: -6pt;
+    left: 5pt;
+    z-index: 1;
+}
+
+.myImages {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.myImages:hover {
+  -moz-box-shadow: 0 0 10px #ccc;
+  -webkit-box-shadow: 0 0 10px #ccc;
+  box-shadow: 0 0 10px #ccc;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(255, 255, 255, 0.98); /* Black w/ opacity */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+#caption {
+  margin: auto;
+  display: block;
+  width: 150%;
+  max-width: 1000px;
+  text-align: center;
+  color: black;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)}
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: black;
+  font-size: 60px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
