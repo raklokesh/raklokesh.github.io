@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>Rak's Academic Research</title>
+
+        <link rel="stylesheet" href="../css/main.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+                integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+                crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.2/css/academicons.min.css"
+                integrity="sha512-KlJCpRsLf+KKu2VQa5vmRuClRFjxc5lXO03ixZt82HZUk41+1I0bD8KBSA0fY290ayMfWYI9udIqeOWSu1/uZg=="
+                crossorigin="anonymous" />
+    </head>
+
+    <body>
+        <div id="nav-placeholder"></div>
+        <script src="js/loadNav.js"></script>
+
+        <!-- container that describes -->
+        <div class="research-container">
+            <section id="content">
+                <h1>Academic Research Highlights</h1>
+                <p>
+                    Selected research projects with a short description and graphical (&lt;1 min) summary. Full list of publications is at 
+                    the <a href="#publicationslist">bottom</a> and in my CV.
+                </p>
+            </section>
+        </div>
+
+        <!-- creates the projects window -->
+        <div class="projects-wrapper" id="projects-wrapper">
+            <!-- javascript file populates the projects here -->
+        </div>
+        <script src="js/populateProjects.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => loadProjects());
+        </script>
+
+        <!-- creates the list of publications -->
+        <div class="publicationslist-container">
+            <section id="publicationslist">
+                <h1>List of Journal Publications</h1>
+                <ol class="publications" id="publications">
+                    <!-- JavaScript will populate publications here -->
+                </ol>
+            </section>
+        </div>
+        <script src="js/populatePublications.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => loadPublications());
+        </script>
+        
+        <!-- creates the links bar -->
+        <section id="links_researchpage">
+        </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => loadLinks('links_researchpage'));
+        </script>
+        <script src="js/loadLinks.js"></script>
+
+    </body>
+
+
+
+</html>

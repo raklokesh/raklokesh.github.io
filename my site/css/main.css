@@ -1,0 +1,531 @@
+@font-face {
+    font-family: 'Avenir Pro';
+    src: url('../assets/fonts/AvenirLTProLight.otf') format('opentype'),
+    url('../fonts/AvenirLTProMedium.otf') format('opentype'),
+    url('../fonts/AvenirLTProLightOblique.otf') format('opentype'),
+    url('../fonts/AvenirLTProOblique.otf') format('opentype'),
+    url('../fonts/AvenirNextLTProRegular.otf') format('opentype'),
+    url('../fonts/AvenirNextLTProBold.otf') format('opentype'),
+    url('../fonts/AvenirLTProBook.otf') format('opentype');
+}
+
+:root {
+    --background-color: #e6e6e6;
+    --linksbar-background-color: #e4dde2;
+    --posinfobox-background-color: #e6d5df;
+
+    --primary-text-color: rgb(22, 78, 110);
+    --hover-color: rgb(57, 158, 161);
+    --heading-text-color: rgb(0, 0, 0);
+
+    --border-color: #7c7c7c;
+
+    --max-width: 1200px;
+    --container-padding: 0.8rem;
+    --avatar-width: min(300px, 90vw);
+    --box-padding: 1rem;
+    --gap-small: 0.5rem;
+    --gap-medium: 1rem;
+    --gap-large: 2.5rem;
+
+    --viewport-width: 90%;
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 768px) {
+    .header-wrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .info-box {
+        margin: 0 auto;
+    }
+
+    .myNav ul {
+        gap: var(--gap-small);
+    }
+    
+    .myNav li a {
+        padding: 0.3rem 0.8rem;
+    }
+
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    :root {
+        --container-padding: 0.5rem;
+        --gap-large: 1.5rem;
+    }
+}
+
+/* Your existing CSS starts here */
+html {
+    font-family: 'Avenir Pro', sans-serif;
+    font-size: larger;
+    font-weight: 300;
+    background-color: var(--background-color);
+    scroll-behavior: smooth;
+}
+
+/* Global Link styling */
+a {
+    text-decoration: none;
+    color: var(--primary-text-color);
+    
+}
+
+a:hover {
+    color: var(--hover-color);
+}
+
+body {
+    padding-top: 3.5rem;  /* Space for fixed navigation bar*/
+    padding-bottom: 6rem;   /* Space for fixed links bar icons  sixe 3 rem + 0.5rem margin bottom + 0.5rem margin top*/
+}
+
+/* Navigation bar styling */
+.myNav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--background-color);
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: var(--container-padding);
+    margin: 0 auto;
+}
+  
+/* Remove bullets, margin and padding */
+.myNav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--gap-medium);
+}
+
+.myNav li {
+    display: inline-flex;
+}
+
+/* Define the block styling for the links */
+.myNav li a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    /* Set the font size (minimum value, preferred value, maximum value) */
+    font-size: clamp(0.8rem, 1.4vw, 3rem); /* preferred value is 1.5% of viewport width */
+    color: var(--primary-text-color);
+    transition: color 0.3s ease;
+}
+
+.myNav li a:hover{
+    color: var(--hover-color);
+}
+
+/* Add this rule for current page */
+.myNav li a.current {
+    color: var(--primary-text-color);
+    border-bottom: .4vh solid var(--primary-text-color); /* Add a border at the bottom of the link */
+}
+
+/*container on the home page containing photo, about information and current position ifnormation*/
+.main-container {
+    display: flex;
+    flex-direction: column; /* Stack the header and content vertically */
+    gap: var(--gap-medium); /* Space between header and content */
+    width: var(--viewport-width); /* Take up 90% of the viewport width */
+    max-width: var(--max-width); /* Limit the width to 1200px */
+    margin: 0 auto; /* Center the container */
+    padding: var(--container-padding); /* Add padding inside the container */
+}
+
+.header-wrapper {
+    display: flex; /* Arrange the logo and navigation side by side */
+    gap: var(--gap-large); /* Space between avatar and content */
+    align-items: flex-start; /* Align avatar and content to the top */
+}
+
+.header-wrapper h1 {
+    font-size: 1.5rem;
+    color: var(--heading-text-color); /* Set icon color */
+}
+
+.header-wrapper a {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+}
+
+.header-wrapper a:hover {
+    color: var(--hover-color)
+}
+
+/* my photo on the home page */
+.avatar {
+    width: var(--avatar-width);
+    height: auto;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Section consisting of introductory paragraphs about myself */
+#about-content {
+    flex: 1;
+    min-width: min(300px, 90vw);
+}
+
+#about-content p {
+    text-align: justify;
+    line-height: 1.2;
+}
+
+/* Current position and location info box */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-medium);
+    padding-top: 0.5rem;
+}
+
+.info-box {
+    width: var(--avatar-width);
+    box-sizing: border-box;
+    padding: var(--container-padding);   
+    border-top: 0.2rem solid var(--border-color);
+    border-bottom: 0.2rem solid var(--border-color);
+    text-align: left;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.info-box h3 {
+    margin: 0 0 0.375rem 0;
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: var(--gap-small);
+}
+
+.info-box h3 i {
+    color: var(--primary-text-color); /* Set icon color */
+    text-align: center; /* Center the icon */
+    width: 100%; /* Make the icon width 100% */
+}
+
+.info-box h3 span {
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: normal; /* Set icon description info weight to normal */
+    font-size: 0.7em; /* Set icon description info font size */
+    text-align: left; /* Align icon description info to the left of the grid column*/
+    line-height: 1.5; /* Adjust line height for better vertical alignment between icon and text*/
+}
+
+
+/*Social media links box styling*/
+#links {
+    width: var(--viewport-width);
+    max-width: var(--max-width);
+    margin: 0 auto;  /* Center the links bar */
+    padding: 0.4rem 0 calc(var(--container-padding) * 1.8) 0; /* Add padding inside the container */
+    background-color: var(--linksbar-background-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.15rem 0.2rem rgba(0, 0, 0, 0.15);
+}
+
+.icons {
+    list-style-type: none;
+    margin: 0 auto;  /* Center the container */
+    font-size: 2.0em;
+    display: flex;
+    justify-content: center;  /* Center icons horizontally */
+    /* Set the gap between icons (minimum value, preferred value, maximum value) */
+    gap: clamp(2rem, 12vw, 16rem); /* preferred value is 12rem */
+    width: fit-content;  /* Container only as wide as needed */
+}
+
+.icons li {
+    position: relative; /* Position tooltip relative to the icon */
+}
+
+.icons a {
+    color: var(--primary-text-color);
+    transition: color 0.3s ease;
+
+}
+
+.icons a::after {
+    content: attr(title);  /* Uses the title attribute as tooltip text */
+    position: absolute;
+    left: 50%; /* Center the tooltip horizontally with respect to the icon above */
+    top: 90%; /* Position the tooltip below the icon with respect to the top of the icon */
+    transform: translateX(-50%); /* Center the tooltip horizontally */
+    color: var(--primary-text-color);
+    font-size: 0.8rem; /* Set the font size of the tooltip */
+    white-space: nowrap;
+    opacity: 1;
+    visibility: visible;
+}
+
+.icons a:hover{
+    color: var(--hover-color);
+    transition: color 0.3s ease;
+
+}
+
+/* Show tooltip on hover */
+.icons a:hover::after {
+    opacity: 1;
+    visibility: visible;
+    color: var(--hover-color);
+    transition: color 0.3s ease;
+
+}
+
+/* RESEARCH PAGE styling */
+.research-container {
+    display: flex;
+    width: var(--viewport-width); /* Take up 90% of the viewport width */
+    max-width: var(--max-width); /* Limit the width to 1200px */
+    margin: 0 auto; /* Center the container with respect to the page*/
+    /* border-bottom: 0.2rem solid var(--border-color); */
+    box-shadow: 0 0.2rem 0.2rem -0.1rem rgba(0,0,0,0.1);
+    padding-left: .2rem;
+    position: relative;
+    z-index: 1; /* Set the z-index to 1 to keep the research container bar on top of the scrolling projects*/
+}
+
+.research-container h1 {
+    color: var(--heading-text-color);
+}
+
+.research-container a {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+}
+
+.research-container a:hover {
+    color: var(--hover-color)
+}
+
+.projects-wrapper {
+    height: calc(62vh); /* Viewport height minus space for header and links */
+    width: var(--viewport-width); /* Take up 90% of the viewport width */
+    max-width: var(--max-width); /* Limit the width to 1200px */
+    margin: 0 auto; /* Center the container with respect to the page*/
+    overflow-y: auto;
+    padding-left: var(--container-padding);
+    padding-bottom: 2rem;
+}
+
+.project-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* creates a grid with two columns with widths in ration 1.2 : 1*/
+    /* width: var(--viewport-width); Take up 90% of the viewport width */
+    /* max-width: var(--max-width); Limit the width to 1200px */
+    margin: 0 auto; /* Center the container with respect to the page*/
+    margin-bottom: 0.8rem; /* Add space between projects */
+    padding-left: var(--container-padding); /* Add padding inside the container to indent the text*/
+}
+
+/* Project all text styling */
+.project-text {
+    text-align: left;
+    padding-right: 1.5rem;  /* Add space on right side between the video and text */
+}
+
+/* Project heading 'h2' text styling */
+.project-text h2 {
+    font-size: 1.2rem;
+    color: var(--heading-text-color);
+    margin-bottom: 0.4rem;  /*margin between the heading and the description*/
+}
+
+/* Project description 'p' text styling */
+.project-text p {
+    line-height: 1.2rem;
+    font-size: 0.9rem;
+    text-align: justify;
+    margin-bottom: 0.5rem;
+    margin-top: 0;  /* Remove top margin */
+}
+
+/* Project description text 'a' text styling */
+.project-text a {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    border-bottom: 0.07rem dotted currentColor;
+}
+
+.project-text a:hover {
+    color: var(--hover-color);
+    cursor: pointer;
+}
+
+/* Project publication link styling */
+.publication-link-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* publication link doi text styling */
+.publication-link-wrapper a {
+    font-size: 0.8rem;
+    border-bottom: 0.0rem dotted currentColor;
+}
+
+.publication-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    color: var(--primary-text-color);
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+/* publication link doi icon styling */
+.publication-link i {
+    font-size: 1.1rem;
+}
+
+.publication-link:hover {
+    color: var(--hover-color);
+    cursor: pointer;
+}
+
+/* Project video styling */
+.project-video {
+    margin-top: 1.5rem; /* Add space on top */
+    display: flex;
+    justify-content: center;
+    /* box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); */
+}
+
+.project-video video {
+    max-width: 95%;
+    height: auto;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    cursor: pointer;
+}
+
+.play-button i {
+    color: rgba(43, 43, 43, 0.562);
+    font-size: min(6vw, 4rem);
+}
+
+.play-button i:hover {
+    color: rgba(58, 58, 58, 0.9);
+}
+
+/* Links bar styling for the Research page*/
+/* This is different from the one displayed on the home page because it is fixed at the bottom of the page */
+#links_researchpage {
+    position: fixed;
+    bottom: 0; /* Position the links bar at the bottom of the viewport */
+    left: 50%; /* Position the links bar at the center of the viewport */
+    transform: translateX(-50%); /* Center the links bar horizontally with respect to its own width*/
+    width: var(--viewport-width);
+    max-width: var(--max-width);
+    margin-bottom: 0.3rem; /* Margin between the links bar and the bottom of the web page */
+    padding: 0.4rem 0 calc(var(--container-padding) * 1.8) 0;
+    background-color: var(--linksbar-background-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.15rem 0.2rem rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+/* list of publications on the research page */
+.publicationslist-container {
+    display: flex;
+    width: var(--viewport-width); /* Take up 90% of the viewport width */
+    max-width: var(--max-width); /* Limit the width to 1200px */
+    margin: 0 auto; /* Center the container with respect to the page*/
+    /* border-bottom: 0.2rem solid var(--border-color); */
+    box-shadow: 0 -0.2rem 0.2rem -0.1rem rgba(0,0,0,0.1);
+    padding-left: .2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.publications {
+    counter-reset: item;
+    list-style-type: decimal;
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.publications li::marker {
+    color: var(--heading-text-color);
+    font-weight: 500;
+}
+
+.publications li {
+    margin-bottom: 0.6rem;
+    line-height: 1.5rem;
+    font-size: 0.9rem;
+    text-align: justify;
+}
+
+.publications .authors {
+    font-weight: 500;
+}
+
+.publications .journal {
+    font-style: italic;
+}
+
+.publications .doi-link {
+    margin-left: 0.2rem;
+    color: var(--primary-text-color)
+}
+
+.publications .doi-link:hover {
+    color: var(--hover-color);
+}
+
+.publications .doi-link i {
+    font-size: 1rem;
+    margin-left: 0.3rem;
+}
+
+
+.more-container {
+    display: flex;
+    width: var(--viewport-width); /* Take up 90% of the viewport width */
+    max-width: var(--max-width); /* Limit the width to 1200px */
+    margin: 0 auto; /* Center the container with respect to the page*/
+    /* border-bottom: 0.2rem solid var(--border-color); */
+    box-shadow: 0 0.2rem 0.2rem -0.1rem rgba(0,0,0,0.1);
+    padding-left: .2rem;
+    position: relative;
+    z-index: 1; /* Set the z-index to 1 to keep the research container bar on top of the scrolling projects*/
+}
+
