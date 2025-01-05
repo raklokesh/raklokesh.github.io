@@ -299,6 +299,34 @@ body {
 
 }
 
+.copyright {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: transparent;
+}
+
+.copyright p {
+    font-size: 0.7rem;
+    opacity: 0.5;
+    margin-bottom: 0.1rem; /* Reduced gap */
+}
+
+.copyright a {
+    display: block;
+    color: var(--primary-text-color);
+    text-decoration: none;
+    font-size: 0.7rem;
+    opacity: 0.8;
+    margin-bottom: 0.2rem; /* Reduced gap */
+}
+
+.copyright a:hover {
+    color: var(--hover-color);
+    opacity: 1;
+}
+
 /* RESEARCH PAGE styling */
 .research-container {
     display: flex;
