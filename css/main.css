@@ -19,6 +19,7 @@
     --heading-text-color: rgb(0, 0, 0);
 
     --border-color: #cbcbcb;
+    --tabs-border-color: #2e2e2e;
 
     --max-width: 1200px;
     --container-padding: 0.8rem;
@@ -569,16 +570,285 @@ body {
     margin-left: 0.3rem;
 }
 
+/* Work experience and modern CV template styliing */
 
-.more-container {
+.tab-container {
     display: flex;
+    flex-direction: column; /* Stack children vertically */
     width: var(--viewport-width); /* Take up 90% of the viewport width */
     max-width: var(--max-width); /* Limit the width to 1200px */
-    margin: 0 auto; /* Center the container with respect to the page*/
-    /* border-bottom: 0.2rem solid var(--border-color); */
-    box-shadow: 0 0.2rem 0.2rem -0.1rem rgba(0,0,0,0.1);
-    padding-left: .2rem;
+    margin: 2rem auto 0; /* Added top margin of 2rem */
+    padding: 0 1rem;
+    height: calc(100vh - 8rem); /* Account for margins and header */
     position: relative;
-    z-index: 1; /* Set the z-index to 1 to keep the research container bar on top of the scrolling projects*/
 }
 
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 0.09rem;
+    width: var(--viewport-width);
+    max-width: var(--max-width);
+    position: fixed;
+    top: 4rem; /* Account for nav bar */
+    left: 50%;
+    transform: translateX(-50%); /* Center the tabs container */
+    background-color: var(--background-color);
+    z-index: 10;
+    box-shadow: 0 0.25rem 0.2rem -0.1rem rgba(0,0,0,0.1);
+    margin: 0 auto;
+}
+
+/* Add pseudo-elements for the bottom border segments */
+.tabs::before,
+.tabs::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: var(--tabs-border-color);
+}
+
+/* Left segment of bottom border */
+.tabs::before {
+    left: 0;
+    right: 50%;
+}
+
+/* Right segment of bottom border */
+.tabs::after {
+    left: 50%;
+    right: 0;
+}
+
+.tab-button {
+    height: 2rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    background: none;
+    font-size: clamp(0.8rem, 0.8vw, 3rem);
+    color: var(--tabs-border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    margin-bottom: -2px;
+    border-radius: 6px 6px 0 0;
+    z-index: 1;
+}
+
+/* Add hover effect for the tab buttons which are not active*/
+.tab-button:hover:not(.active) {
+    color: var(--hover-color);
+    border-bottom-color: transparent;
+}
+
+/* The active tab should have a border*/
+.tab-button.active {
+    border-color: var(--tabs-border-color);
+    border-bottom-color: var(--linksbar-background-color);
+    background-color: var(--linksbar-background-color);
+    z-index: 2;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .tab-container {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    
+    .tabs {
+        flex-direction: column;
+        gap: 0.5rem;
+        z-index: 2;
+        background: var(--background-color);
+    }
+
+    .tab-content {
+        width: 100%;
+        top: 6.5rem;
+        padding-left: 0;
+        margin-top: 2rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .tab-button {
+        width: 100%;
+        text-align: left;
+        height: var(--tab-height);
+    }
+}
+
+.tab-content {
+    width: var(--viewport-width); /* Take up 90% of the viewport width */
+    margin-top: 2rem; /* Add space between tabs and content */
+    padding: 2rem 4rem 2rem 2rem; /* Reduce right padding */
+    background-color: var(--background-color);
+    height: calc(100vh - 8rem); /* Account for margins and header */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Work experience tab */
+.project-item {
+    margin-bottom: 2rem;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.position {
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    font-size: clamp(0.9rem, 1.0vw, 3rem);
+}
+
+.date {
+    color: rgb(70, 70, 70);;
+    font-size: clamp(0.8rem, 0.8vw, 3rem);
+}
+
+.organization {
+    color: rgb(70, 70, 70);;
+    margin-bottom: 0.5rem;
+    font-size: clamp(0.8rem, 0.8vw, 3rem);
+    margin-top: 0.3rem;
+}
+
+.project-description {
+    list-style-type: disc;
+    margin-top: 0.5rem;
+    padding-left: 2rem;
+    font-size: clamp(0.8rem, 0.8vw, 3rem);
+}
+
+.project-description li {
+    margin-bottom: 0.3rem;
+    font-size: clamp(0.8rem, 0.8vw, 3rem);
+}
+
+.project-topics, .project-skills {
+    padding-left: 1.4rem;
+    margin-top: 10px;
+    font-size: clamp(0.8rem, 0.8vw, 3rem);
+}
+
+.project-topics strong, .project-skills strong {
+    color: #666;
+}
+
+/* Teaching experience tab*/
+.teaching-item {
+    margin-bottom: 2rem;
+}
+
+.teaching-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course {
+    font-weight: bold;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    color: rgb(73, 73, 73);
+    font-size: clamp(0.8rem, 0.9vw, 3rem);
+}
+
+.teaching-responsibilities {
+    list-style-type: disc;
+    margin-top: 0.2rem;
+    font-size: clamp(0.8rem, 0.8vw, 3rem);
+}
+
+.teaching-responsibilities li {
+    margin-bottom: 0.3rem;
+    font-size: clamp(0.8rem, 0.8vw, 3rem);
+}
+
+/* Education tab */
+.education-item {
+    margin-bottom: 2rem;
+}
+
+.education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.degree {
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    font-size: clamp(0.9rem, 1.0vw, 3rem);
+}
+
+.education-description {
+    list-style-type: disc;
+    margin-top: 0.2rem;
+    font-size: clamp(0.8rem, 0.8vw, 3rem);
+}
+
+.education-description li {
+    margin-bottom: 0.3rem;
+    font-size: clamp(0.8rem, 0.8vw, 3rem);
+}
+
+.education-topics {
+    padding-left: 1.4rem;
+    margin-top: 10px;
+    font-size: clamp(0.8rem, 0.8vw, 3rem);
+}
+
+.education-topics strong {
+    color: #666;
+}
+
+.award-item {
+    margin-bottom: 1.5rem;
+}
+
+.award-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.award-name {
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    font-size: clamp(0.9rem, 1.0vw, 3rem);
+}
+
+.award-description {
+    list-style-type: disc;
+    margin-top: 0.2rem;
+    font-size: clamp(0.8rem, 0.8vw, 3rem);
+}
