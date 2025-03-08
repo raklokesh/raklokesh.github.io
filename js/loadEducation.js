@@ -50,7 +50,7 @@ function createEducationItem(edu) {
         <div class="education-details">
             <p class="organization">${edu.organization}</p>
             <ul class="education-description">
-                ${edu.description.map(item => `<li>${item}</li>`).join('')}.
+                ${edu.description.map(item => `<li>${item}</li>`).join('')}
             </ul>
             ${edu.topics ? `
                 <div class="education-topics">
