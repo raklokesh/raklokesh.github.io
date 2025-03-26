@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Research Survey | Rakshith Lokesh</title>
+        <link rel="stylesheet" href="css/teachingquiz.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+                integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+                crossorigin="anonymous" />
+    </head>
+    <body>
+
+        <div class="main-container">
+            <div class="form-container">
+                <h1>Quick Quiz 1</h1>
+                
+                <form id="surveyForm">
+                    <div class="question">
+                        <h3>Your Information</h3>
+                        <div class="form-field">
+                            <label for="userName">Enter your Initials:</label>
+                            <input type="text" id="userName" name="userName">
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h3>1. How often do you practice physical activities?</h3>
+                        <div class="options">
+                            <label><input type="radio" name="activity" value="daily"> Daily</label>
+                            <label><input type="radio" name="activity" value="weekly"> 2-3 times per week</label>
+                            <label><input type="radio" name="activity" value="monthly"> Few times per month</label>
+                            <label><input type="radio" name="activity" value="rarely"> Rarely</label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit Responses</button>
+                    </div>
+                </form>
+
+                <script type="module" src="js/teachingquiz.js"></script>
+            </div>
+        </div>
+        
+    </body>
+</html>
