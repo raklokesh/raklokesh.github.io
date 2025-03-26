@@ -1,0 +1,179 @@
+@font-face {
+    font-family: 'Avenir Pro';
+    src: url('../assets/fonts/AvenirLTProLight.otf') format('opentype'),
+    url('../fonts/AvenirLTProMedium.otf') format('opentype'),
+    url('../fonts/AvenirLTProLightOblique.otf') format('opentype'),
+    url('../fonts/AvenirLTProOblique.otf') format('opentype'),
+    url('../fonts/AvenirNextLTProRegular.otf') format('opentype'),
+    url('../fonts/AvenirNextLTProBold.otf') format('opentype'),
+    url('../fonts/AvenirLTProBook.otf') format('opentype');
+}
+
+:root {
+    --background-color: #e6e6e6;
+    --linksbar-background-color: #e4dde2;
+    --posinfobox-background-color: #e6d5df;
+
+    --primary-text-color: rgb(22, 78, 110);
+    --hover-color: rgb(57, 158, 161);
+    --heading-text-color: rgb(0, 0, 0);
+
+    --border-color: #cbcbcb;
+    --tabs-border-color: #2e2e2e;
+
+    --max-width: 1200px;
+    --container-padding: 0.8rem;
+    --avatar-width: min(300px, 90vw);
+    --box-padding: 1rem;
+    --gap-small: 0.5rem;
+    --gap-medium: 1rem;
+    --gap-large: 2.5rem;
+
+    --viewport-width: 90%;
+}
+
+
+/* Your existing CSS starts here */
+html {
+    font-family: 'Avenir Pro', sans-serif;
+    font-size: larger;
+    font-weight: 300;
+    background-color: var(--background-color);
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-text-color);
+    
+}
+
+a:hover {
+    color: var(--hover-color);
+}
+
+body {
+    padding-top: 3.5rem;  /* Space for fixed navigation bar*/
+    padding-bottom: 6rem;   /* Space for fixed links bar icons  sixe 3 rem + 0.5rem margin bottom + 0.5rem margin top*/
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-intro {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.question {
+    margin-bottom: 2rem;
+}
+
+.question h3 {
+    margin-bottom: 1rem;
+    color: var(--heading-text-color);
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.options input {
+    cursor: pointer;
+}
+
+.submit-btn {
+    background-color: var(--primary-text-color);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.submit-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.response-container {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+#responseDetails {
+    text-align: left;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 4px;
+}
+
+.download-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 1rem;
+}
+
+.download-btn:hover {
+    background-color: #45a049;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.access-denied {
+    text-align: center;
+    padding: 2rem;
+    background-color: #ffebee;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.access-denied h2 {
+    color: #d32f2f;
+}
+
+/* For inline error messages */
+.input-error {
+    border: 2px solid #d32f2f !important;
+    background-color: #ffebee !important;
+}
+
+.error-message {
+    color: #d32f2f;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #ffebee;
+    border-radius: 4px;
+    font-weight: bold;
+}
