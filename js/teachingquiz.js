@@ -232,11 +232,11 @@ async function fetchAllResponses() {
         // Create responses display
         const container = document.querySelector('.form-container');
         container.innerHTML = `
-            <h1>All Survey Responses</h1>
+            <h1>All Quiz Responses</h1>
             <p>Total responses: ${querySnapshot.size}</p>
             <div class="button-group">
                 <button id="downloadCSV" class="download-btn">Download as CSV</button>
-                <button onclick="window.location.href='teachingquiz.html'" class="backsurvey-btn">Back to Survey</button>
+                <button onclick="window.location.href='teachingquiz.html'" class="backsurvey-btn">Back to Quiz</button>
             </div>
             <div id="allResponses"></div>
         `;
@@ -298,7 +298,7 @@ function downloadResponses(querySnapshot) {
     
     // Set up download link
     link.setAttribute('href', url);
-    link.setAttribute('download', `survey_responses_${new Date().toISOString().slice(0,10)}.csv`);
+    link.setAttribute('download', `quiz_responses_${new Date().toISOString().slice(0,10)}.csv`);
     link.style.visibility = 'hidden';
     
     // Trigger download
