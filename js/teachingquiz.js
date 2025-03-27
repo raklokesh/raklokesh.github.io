@@ -148,15 +148,32 @@ async function handleSubmit(event) {
     // If validation fails, show error and return
     if (!isValid) {
         // Create or update error message element
+        const submitBtn = form.querySelector('.submit-btn');
+        
+        // Create or update error message element
         let errorElement = document.getElementById('formError');
         if (!errorElement) {
             errorElement = document.createElement('div');
             errorElement.id = 'formError';
             errorElement.className = 'error-message';
-            form.prepend(errorElement);
+            
+            // Insert before the submit button
+            submitBtn.parentNode.insertBefore(errorElement, submitBtn);
+        } else {
+            // Move it if it exists but is not before the submit button
+            submitBtn.parentNode.insertBefore(errorElement, submitBtn);
         }
         
-        errorElement.textContent = errorMessage;
+        // Format errors as bullet points
+        errorElement.innerHTML = `
+            <p>Please correct the following errors:</p>
+            <ul>
+                ${errorMessage.split('. ').filter(msg => msg.trim() !== '').map(msg => `<li>${msg}</li>`).join('')}
+            </ul>
+        `;
+        
+        // Scroll to the error message
+        errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
     }
     
