@@ -130,7 +130,7 @@ body {
 }
 
 .download-btn {
-    background-color: #4CAF50;
+    background-color: var(--primary-text-color);
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -142,7 +142,23 @@ body {
 }
 
 .download-btn:hover {
-    background-color: #45a049;
+    background-color: var(--hover-color);
+}
+
+.backsurvey-btn {
+    background-color: rgb(84, 84, 84);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 1rem;
+}
+
+.backsurvey-btn:hover {
+    background-color: var(--hover-color);
 }
 
 .button-group {

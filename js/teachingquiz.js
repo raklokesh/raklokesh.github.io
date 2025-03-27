@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const correctPasscode = "wcupa2025"; 
         
         if (accessCode === correctPasscode) {
-            showAllResponses();
+            fetchAllResponses();
         } else {
             showAccessDenied();
         }
@@ -80,8 +80,9 @@ async function handleSubmit(event) {
     // Get form data
     const form = document.getElementById('surveyForm');
     const userName = form.userName.value.trim();
-    const activitySelected = form.querySelector('input[name="activity"]:checked');
-    
+    const choiceQ1 = form.querySelector('input[name="Q1"]:checked');
+    const choiceQ2 = form.querySelector('input[name="Q2"]:checked');
+
     // Validation
     let isValid = true;
     let errorMessage = "";
@@ -99,22 +100,49 @@ async function handleSubmit(event) {
         }, { once: true });
     }
     
-    // Check if activity is selected
-    if (!activitySelected) {
+    // Check if Q1 is answered
+    if (!choiceQ1) {
         isValid = false;
-        errorMessage += "Please select an option for Question 1.";
+        errorMessage += "Please select an option for Question 1. ";
         
-        // Highlight the radio button container
-        const radioContainer = form.querySelector('.options');
-        radioContainer.classList.add('input-error');
+        // Highlight the Q1 radio button container specifically
+        const allOptionContainers = form.querySelectorAll('.options');
+        const q1Container = allOptionContainers[0]; // Get the first options container
         
-        // Remove highlight when a radio is selected
-        const radios = form.querySelectorAll('input[name="activity"]');
-        radios.forEach(radio => {
-            radio.addEventListener('change', function() {
-                radioContainer.classList.remove('input-error');
-            }, { once: true });
-        });
+        if (q1Container) {
+            q1Container.classList.add('input-error');
+            
+            // Remove highlight when a radio is selected
+            const radios = form.querySelectorAll('input[name="Q1"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    q1Container.classList.remove('input-error');
+                }, { once: true });
+            });
+        }
+    }
+
+    // Check if Q2 is answered
+    if (!choiceQ2) {
+        isValid = false;
+        errorMessage += "Please select an option for Question 2.";
+        
+        // Highlight the Q2 radio button container specifically
+        // This selects the second .options container in the form
+        const allOptionContainers = form.querySelectorAll('.options');
+        const q2Container = allOptionContainers[1]; // Get the second options container
+        
+        if (q2Container) {
+            q2Container.classList.add('input-error');
+            
+            // Remove highlight when a radio is selected
+            const radios = form.querySelectorAll('input[name="Q2"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    q2Container.classList.remove('input-error');
+                }, { once: true });
+            });
+        }
     }
     
     // If validation fails, show error and return
@@ -131,67 +159,40 @@ async function handleSubmit(event) {
         errorElement.textContent = errorMessage;
         return;
     }
-
-    if (isValid) {
-        try {
-            // Create response object
-            const response = {
-                userName: userName,
-                activity: activitySelected.value,
-                timestamp: serverTimestamp()
-            };
-            
-            // Save to Firebase
-            await saveResponse(response);
-            
-            // Mark as submitted in localStorage
-            localStorage.setItem('quizSubmitted', 'true');
-            
-            // Show success message
-            // ...
-        } catch (error) {
-            console.error("Error saving response:", error);
-        }
-    }
-    
-    // Continue with form submission if valid
-    const activity = activitySelected.value;
-    
-    // Create response object
-    const response = {
-        userName: userName,
-        activity: activity,
-        timestamp: serverTimestamp()
-    };
     
     try {
+        // Create response object
+        const response = {
+            userName: userName,
+            Q1: choiceQ1.value,
+            Q2: choiceQ2.value,
+            timestamp: serverTimestamp()
+        };
+        
         // Save to Firebase
         await saveResponse(response);
         
-        // Display individual response
-        const responseDetails = document.getElementById('responseDetails');
-        if (responseDetails) {
-            responseDetails.innerHTML = `
-                <p><strong>Name:</strong> ${userName}</p>
-                <p><strong>Activity frequency:</strong> ${activity}</p>
-                <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
-            `;
-        }
+        // Mark as submitted in localStorage
+        localStorage.setItem('quizSubmitted', 'true');
         
-        // Hide form, show response
-        form.style.display = 'none';
-        const responseElement = document.getElementById('response');
-        if (responseElement) {
-            responseElement.style.display = 'block';
-        } else {
-            alert("Response saved successfully!");
-        }
+        // Show success message
+        showSuccessMessage(userName);
+        
     } catch (error) {
         console.error("Error saving response:", error);
-        alert("There was an error saving your response. Please try again.");
+        alert("There was an error submitting your response. Please try again.");
     }
-    
-    return false;
+}
+
+function showSuccessMessage(userName) {
+    const container = document.querySelector('.form-container');
+    container.innerHTML = `
+        <div class="submission-complete">
+            <h2>Thank You!</h2>
+            <p>Your response has been recorded.</p>
+            <p>Your initials: ${userName}</p>
+        </div>
+    `;
 }
 
 async function saveResponse(response) {
@@ -205,7 +206,7 @@ async function saveResponse(response) {
     }
 }
 
-async function showAllResponses() {
+async function fetchAllResponses() {
     try {
         // Get responses from Firestore
         const q = query(collection(db, "quizResponses"), orderBy("timestamp", "desc"));
@@ -218,7 +219,7 @@ async function showAllResponses() {
             <p>Total responses: ${querySnapshot.size}</p>
             <div class="button-group">
                 <button id="downloadCSV" class="download-btn">Download as CSV</button>
-                <button onclick="window.location.href='teachingquiz.html'" class="submit-btn">Back to Survey</button>
+                <button onclick="window.location.href='teachingquiz.html'" class="backsurvey-btn">Back to Survey</button>
             </div>
             <div id="allResponses"></div>
         `;
@@ -248,14 +249,15 @@ function showAccessDenied() {
 
 function downloadResponses(querySnapshot) {
     // CSV header
-    let csvContent = "Name,Activity,Timestamp\n";
+    let csvContent = "Name,Q1,Q2,Timestamp\n";
     
     // Add each response as a row
     querySnapshot.forEach(doc => {
         const data = doc.data();
         const userName = data.userName || 'Anonymous';
-        const activity = data.activity || 'Not specified';
-        
+        const choiceQ1 = data.Q1 || 'Not specified';
+        const choiceQ2 = data.Q2 || 'Not specified';
+
         // Format timestamp
         let timestamp = 'N/A';
         if (data.timestamp && data.timestamp.toDate) {
@@ -264,11 +266,12 @@ function downloadResponses(querySnapshot) {
         
         // Escape fields that might contain commas
         const escapedName = `"${userName.replace(/"/g, '""')}"`;
-        const escapedActivity = `"${activity.replace(/"/g, '""')}"`;
+        const escapedQ1 = `"${choiceQ1.replace(/"/g, '""')}"`;
+        const escapedQ2 = `"${choiceQ2.replace(/"/g, '""')}"`;
         const escapedTimestamp = `"${timestamp.replace(/"/g, '""')}"`;
         
         // Add row to CSV
-        csvContent += `${escapedName},${escapedActivity},${escapedTimestamp}\n`;
+        csvContent += `${escapedName},${escapedQ1},${escapedQ2},${escapedTimestamp}\n`;
     });
     
     // Create and download file
