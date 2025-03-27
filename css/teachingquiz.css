@@ -93,13 +93,25 @@ body {
     font-size: 1.1rem;
 }
 
-.question {
-    margin-bottom: 2rem;
+.numbered-question {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
 }
 
-.question h3 {
-    font-size: var(--question-font-size);
-    margin-bottom: 1rem;
+.question-number {
+    flex: 0 0 auto;
+    width: 1.5rem;
+    font-weight: bold;
+}
+
+.question-text {
+    flex: 1;
+}
+
+.indented {
+    margin-left: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .options {
