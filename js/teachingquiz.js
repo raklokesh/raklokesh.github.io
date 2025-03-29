@@ -236,20 +236,215 @@ async function fetchAllResponses() {
             <p>Total responses: ${querySnapshot.size}</p>
             <div class="button-group">
                 <button id="downloadCSV" class="download-btn">Download as CSV</button>
+                <button id="viewCharts" class="chart-btn">View Response Charts</button>
                 <button onclick="window.location.href='teachingquiz.html'" class="backsurvey-btn">Back to Quiz</button>
+            </div>
+            <div id="chartContainer" style="display:none;" class="chart-container">
+                <h2>Response Distribution</h2>
+                <div class="chart-grid">
+                    <div class="chart-box">
+                        <canvas id="q1Chart"></canvas>
+                    </div>
+                    <div class="chart-box">
+                        <canvas id="q2Chart"></canvas>
+                    </div>
+                </div>
             </div>
             <div id="allResponses"></div>
         `;
         
-        // Set up download button
+        // Set up buttons
         document.getElementById('downloadCSV').addEventListener('click', () => {
             downloadResponses(querySnapshot);
         });
         
-        // Rest of your existing code...
+        document.getElementById('viewCharts').addEventListener('click', () => {
+            const chartContainer = document.getElementById('chartContainer');
+            if (chartContainer.style.display === 'none') {
+                chartContainer.style.display = 'block';
+                createResponseCharts(querySnapshot);
+                document.getElementById('viewCharts').textContent = 'Hide Charts';
+            } else {
+                chartContainer.style.display = 'none';
+                document.getElementById('viewCharts').textContent = 'View Response Charts';
+            }
+        });
+        
+        // Process and display the responses
+        displayResponses(querySnapshot);
     } catch (error) {
         console.error("Error getting responses:", error);
     }
+}
+
+function createResponseCharts(querySnapshot) {
+    // Count responses for each question
+    const q1Counts = { Choice1: 0, Choice2: 0, Choice3: 0, Choice4: 0 };
+    const q2Counts = { Choice1: 0, Choice2: 0, Choice3: 0, Choice4: 0 };
+    let totalResponses = 0;
+    
+    // Process the data
+    querySnapshot.forEach(doc => {
+        const data = doc.data();
+        totalResponses++;
+        
+        // Count Q1 responses
+        if (data.Q1 && q1Counts.hasOwnProperty(data.Q1)) {
+            q1Counts[data.Q1]++;
+        }
+        
+        // Count Q2 responses
+        if (data.Q2 && q2Counts.hasOwnProperty(data.Q2)) {
+            q2Counts[data.Q2]++;
+        }
+    });
+    
+    // Calculate percentages
+    const q1Percentages = Object.values(q1Counts).map(count => Math.round((count / totalResponses) * 100) || 0);
+    const q2Percentages = Object.values(q2Counts).map(count => Math.round((count / totalResponses) * 100) || 0);
+    
+    // Common labels for both charts
+    const chartLabels = ['Choice A', 'Choice B', 'Choice C', 'Choice D'];
+
+    // Common chart options
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            x: {
+                ticks: {
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    },
+                    color: 'black',
+                    padding: 5
+                },
+                grid: {
+                    display: false,
+                },
+                border: {
+                    color: 'black',
+                    width: 2,
+                    z: 1
+                }
+            },
+            y: {
+                beginAtZero: true,
+                max: 100,
+                title: {
+                    display: true,
+                    text: 'Percentage (%)',
+                    color: 'black',
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    }
+                },
+                ticks: {
+                    font: {
+                        weight: 'bold',
+                        size: 12
+                    },
+                    color: 'black',
+                    padding: 5
+                },
+                grid: {
+                    display: false,
+                },
+                border: {
+                    color: 'black',
+                    width: 2,
+                    z: 1
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: '', // Will be set individually
+                font: {
+                    weight: 'bold',
+                    size: 16
+                },
+                padding: {
+                    top: 10,
+                    bottom: 40 // Increase this value for more space
+                }
+            }
+        }
+    };
+
+    // Common plugin to display values on bars
+    const valueOnBarsPlugin = [{
+        afterDraw: chart => {
+            const ctx = chart.ctx;
+            ctx.save();
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+            ctx.fillStyle = '#000';
+            
+            chart.data.datasets.forEach((dataset, i) => {
+                chart.getDatasetMeta(i).data.forEach((bar, index) => {
+                    const value = dataset.data[index] + '%';
+                    ctx.fillText(value, bar.x, bar.y - 10);
+                });
+            });
+            ctx.restore();
+        }
+    }];
+
+    // Create Q1 chart
+    const q1Ctx = document.getElementById('q1Chart').getContext('2d');
+    const q1Options = {...chartOptions};
+    q1Options.plugins.title.text = 'Question 1 Responses';
+
+    new Chart(q1Ctx, {
+        type: 'bar',
+        data: {
+            labels: chartLabels,
+            datasets: [{
+                data: q1Percentages,
+                backgroundColor: [
+                    'rgba(226, 82, 20, 0.99)',
+                    'rgba(226, 82, 20, 0.99)',
+                    'rgba(46, 204, 25, 0.86)',
+                    'rgba(226, 82, 20, 0.99)'
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: q1Options,
+        plugins: valueOnBarsPlugin
+    });
+
+    // Create Q2 chart
+    const q2Ctx = document.getElementById('q2Chart').getContext('2d');
+    const q2Options = {...chartOptions};
+    q2Options.plugins.title.text = 'Question 2 Responses';
+
+    new Chart(q2Ctx, {
+        type: 'bar',
+        data: {
+            labels: chartLabels,
+            datasets: [{
+                data: q2Percentages,
+                backgroundColor: [
+                    'rgba(226, 82, 20, 0.99)',
+                    'rgba(46, 204, 25, 0.86)',
+                    'rgba(226, 82, 20, 0.99)',
+                    'rgba(226, 82, 20, 0.99)'
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: q2Options,
+        plugins: valueOnBarsPlugin
+    });
 }
 
 // Access denied message when trying to access data without correct passcode
