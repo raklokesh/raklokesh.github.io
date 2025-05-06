@@ -16,7 +16,7 @@ const awardsData = {
             "name": "Arctic Code Vault Contribution",
             "date": "2020",
             "organization": "GitHub",
-            "description": "Repository added to the Arctic Code Vault, a long-term archive of the world's open-source software projects."
+            "description": "Repository included in the Arctic Code Vault, a long-term archive dedicated to preserving the world's open-source software projects."
         },
         {
             "name": "Dissertation Completion Fellowship",
@@ -40,7 +40,7 @@ const awardsData = {
             "name": "NIT Merit Award",
             "date": "2011",
             "organization": "Central Government of India",
-            "description": "Full tuition waiver awarded to the top 0.2 percentile rank holders among ~1,000,000 candidates in the All India Engineering Entrance Exam (AIEEE, now JEE Main), 2011."
+            "description": "Full tuition waiver to the top 0.2% of rank holders out of approximately 1,000,000 candidates in the All India Engineering Entrance Exam (AIEEE, now JEE Main), 2011."
         }
     ]
 };
