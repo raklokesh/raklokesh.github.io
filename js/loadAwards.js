@@ -40,7 +40,7 @@ const awardsData = {
             "name": "NIT Merit Award",
             "date": "2011",
             "organization": "Central Government of India",
-            "description": "Full tuition waiver awarded to the top 0.2% rank holders in the All India Engineering Entrance Exam (AIEEE, now JEE Main), 2011."
+            "description": "Full tuition waiver awarded to the top 0.2 percentile rank holders among ~1,000,000 candidates in the All India Engineering Entrance Exam (AIEEE, now JEE Main), 2011."
         }
     ]
 };
