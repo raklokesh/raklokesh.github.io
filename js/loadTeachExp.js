@@ -6,9 +6,9 @@ const teachingData = {
             "date": "Spring 2025",
             "organization": "Northeastern University, Boston, MA",
             "responsibilities": [
-                "Designing exams and assignments to tackle the use of ChatGPT and increased course enrollment.",
-                "Managed student learning and communication through the Canvas LMS platform.",
-                "Lectured in the absence of primary instructor."
+                "Designed exams and assignments to address ChatGPT usage and accommodate increased course enrollment.",
+                "Managed student learning and communication via the Canvas LMS platform.",
+                "Delivered lectures in the absence of the primary instructor."
             ]
         },
         {
@@ -19,7 +19,7 @@ const teachingData = {
             "responsibilities": [
                 "Lectured on biomechanical principles and measurement techniques.",
                 "Demonstrated biomechanical data analysis using Tracker software.",
-                "Managed student learning and evaluation through the Desire2Learn platform."
+                "Managed student learning and evaluation via the Desire2Learn platform."
             ]
         },
         {
@@ -28,8 +28,8 @@ const teachingData = {
             "date": "Fall 2018 - Spring 2019",
             "organization": "Michigan State University, East Lansing, MI",
             "responsibilities": [
-                "Explained principles of human movement from a measurement and application standpoint.",
-                "Demonstrated the use of accelerometers, force plates, load cells to measure human movements.",
+                "Explained the principles of human movement with a focus on measurement techniques and practical applications.",
+                "Demonstrated the use of accelerometers, force plates, and load cells to quantify human motion and biomechanical forces.",
             ]
         }
         ,
@@ -39,8 +39,8 @@ const teachingData = {
             "date": "Fall 2015 - Spring 2017",
             "organization": "Michigan State University, East Lansing, MI",
             "responsibilities": [
-                "Supervised laboratory sessions on vibration measurement, system modeling, and controller design.",
-                "Utilized National Instruments Data Acquisition Systems and Labview to setup laboratory experiments.",
+                "Supervised laboratory sessions focused on vibration measurement, dynamic system modeling, and controller design.",
+                "Designed and implemented laboratory experiments using National Instruments Data Acquisition Systems and LabVIEW.",
             ]
         }
     ]
