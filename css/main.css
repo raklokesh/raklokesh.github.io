@@ -77,7 +77,6 @@ html {
 a {
     text-decoration: none;
     color: var(--primary-text-color);
-    
 }
 
 a:hover {
@@ -199,6 +198,15 @@ body {
     line-height: 1.2;
 }
 
+@media (max-width: 768px) {
+    #about-content p {
+        font-size: 0.8rem;
+    }
+    #about-content h1 {
+        font-size: 1.2rem;
+    }
+}
+
 /* Current position and location info box */
 .left-column {
     display: flex;
@@ -258,7 +266,7 @@ body {
     display: flex;
     justify-content: center;  /* Center icons horizontally */
     /* Set the gap between icons (minimum value, preferred value, maximum value) */
-    gap: clamp(2rem, 12vw, 16rem); /* preferred value is 12rem */
+    gap: clamp(3.5rem, 12vw, 16rem); /* preferred value is 12rem */
     width: fit-content;  /* Container only as wide as needed */
 }
 
@@ -269,7 +277,7 @@ body {
 .icons a {
     color: var(--primary-text-color);
     transition: color 0.3s ease;
-
+    font-size: 2rem;
 }
 
 .icons a::after {
@@ -300,8 +308,18 @@ body {
 
 }
 
+@media (max-width: 768px) {
+    .icons a {
+        font-size: 1.5rem;
+    }
+    
+    .icons a::after {
+        font-size: 0.6rem;
+    }
+}
+
+
 .copyright {
-    position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
