@@ -23,6 +23,34 @@ function highlightAuthor(authors, highlightName = "Lokesh, R.") {
 }
 
 const publications = [
+        {
+        authors: "Lokesh, R., and Sternad, D.",
+        title: "Dynamical stability and mechanical impedance are optimized when manipulating uncertain dynamically complex objects",
+        journal: "PLoS Computational Biology",
+        year: "Under Revision",
+        doi: ""
+    },
+        {
+        authors: "Sullivan, S.R., Lokesh, R., Calalo, J.A., Ngo, T.T., Buggeln, J.H., Roth, A.M., Peters, C., Kurtzer, I.L., Carter, M.J. and Cashaback, J.G.",
+        title: "Indecision under time pressure arises from suboptimal switching behavior",
+        journal: "Journal of Neurophysiology",
+        year: "2025",
+        doi: "https://doi.org/10.1152/jn.00563.2024"
+    },
+        {
+        authors: "Calalo, J.A., Ngo, T.T., Sullivan, S.R., Strand, K., Buggeln, J.H., Lokesh, R., Roth, A.M., Carter, M.J., Kurtzer, I.L. and Cashaback, J.G.",
+        title: "Online movements reflect ongoing deliberation",
+        journal: "Journal of Neuroscience",
+        year: "2025",
+        doi: "https://doi.org/10.1523/JNEUROSCI.1913-24.2025"
+    },
+        {
+        authors: "Kiafar, B., Kullu, P., Lokesh, R., Chaudhari, A., Wang, Q., Sharmin, S., Doshi, S.M., Bakhshipour, E., Thostenson, E., Cashaback, J. and Barmaki, R.L.",
+        title: "Feasibility of immersive virtual reality and customized robotics with wearable sensors for upper extremity training",
+        journal: "Proceedings of Machine Learning Research",
+        year: "2025",
+        doi: "https://raw.githubusercontent.com/mlresearch/v287/main/assets/kiafar25a/kiafar25a.pdf"
+    },
     {
         authors: "Lokesh, R., & Sternad, D.",
         title: "Human Control of Underactuated Objects: Adaptation to Uncertain Nonlinear Dynamics Ensures Stability",
