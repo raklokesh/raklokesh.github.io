@@ -27,8 +27,8 @@ const publications = [
         authors: "Lokesh, R., and Sternad, D.",
         title: "Dynamical stability and mechanical impedance are optimized when manipulating uncertain dynamically complex objects",
         journal: "PLoS Computational Biology",
-        year: "Under Revision",
-        doi: ""
+        year: "2025",
+        doi: "https://doi.org/10.1371/journal.pcbi.1013797"
     },
         {
         authors: "Sullivan, S.R., Lokesh, R., Calalo, J.A., Ngo, T.T., Buggeln, J.H., Roth, A.M., Peters, C., Kurtzer, I.L., Carter, M.J. and Cashaback, J.G.",
