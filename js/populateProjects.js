@@ -1,5 +1,24 @@
 const projects = [
     {
+        title: "Mechanical Impedance and Stability when Manipulating Complex Objects",
+        text: `Manipulating complex objects is ubiquitous in daily activities, such as donning a jacket or carrying a cup of coffee. 
+        A key feature of these interactions is mechanical impedance of the human limbs at the interaction port.
+        My postdoctoral research with Dr. Dagmar Sternad at the 
+        <a href="https://actionlab.sites.northeastern.edu/" class="publication-wrapper-link" target="_blank" rel="noopener noreferrer">Action Lab</a> (Northeastern University, Massachusetts, U.S.A) 
+        focused on understanding the relevance of mechanical impedance during complex dynamical interactions. 
+        Humans increased their arm impedance to accommodate increased uncertainty in dynamics, 
+        while the net force applied on the cup remained the same. These findings were supported by stochastic open-loop optimal control (SOOC) 
+        simulations that employed a human-inspired impedance controller. The simulations further revealed that preparation and 
+        interaction strategies were selected to optimize mechanical impedance.`,
+        videoPath: "assets/videos/graphabstract_complexobjectimped_ploscompbio.mp4",
+        publicationLink: "https://doi.org/10.1371/journal.pcbi.1013797",
+        publicationText: "Publication Link",
+        pdfLink: "",
+        pdfText: "",
+        supplementLink: "assets/documents/manuscript_supplementary_dynamicstability_ploscompbio2025.pdf",
+        supplementText: "Supplementary File"
+    },
+    {
         title: "Human Control of Objects Having Complex Dynamics",
         text: `Humans manipulate objects like a cup of coffee or a piece of cloth, with remarkable ease. 
         Take the example of carrying a cup of coffee, the coffee can potentially behave unpredictably due to nonlinear dynamics. 
