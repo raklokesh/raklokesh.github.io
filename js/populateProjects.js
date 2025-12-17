@@ -13,8 +13,8 @@ const projects = [
         videoPath: "assets/videos/graphabstract_complexobjectimped_ploscompbio.mp4",
         publicationLink: "https://doi.org/10.1371/journal.pcbi.1013797",
         publicationText: "Publication Link",
-        pdfLink: "",
-        pdfText: "",
+        pdfLink: "assets/documents/manuscript_cupballimpedance_ploscompbio2025.pdf",
+        pdfText: "Manuscript",
         supplementLink: "assets/documents/manuscript_supplementary_dynamicstability_ploscompbio2025.pdf",
         supplementText: "Supplementary File"
     },
