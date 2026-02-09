@@ -1,6 +1,6 @@
 const links = [
     {
-        url: "assets/documents/RakshithLokesh_CV.pdf",
+        url: "assets/documents/RakshithLokesh_CV_2026.pdf",
         icon: "ai ai-cv",  // PDF icon
         title: "Curriculum Vitae"
     },
