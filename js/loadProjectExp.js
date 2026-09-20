@@ -1,6 +1,18 @@
 const projectsData = {
     "projects": [
         {
+            "position": "Research Scientist",
+            "date": "April. 2026 - Present",
+            "organization": "Northeastern University, Boston, MA, U.S.A. & Toyota Research Institute, CA, U.S.A.",
+            "description": [
+                `Designed and built a steering wheel with integrated force sensors.`,
+                "Developing driving tasks simplifying vehicle dynamics models, and a custom user interface.",
+                "Analyzing vehicle dynamical stability and control using phase-space analysis and optimal control."
+            ],
+            "topics": ["3d Printing", "Instrumentation", "Vehicle Dynamics"],
+            "skills": ["Solidworks", "Python", "Unreal Engine"]
+        },
+        {
             "position": "Postdoctoral Fellow",
             "date": "Aug. 2023 - Present",
             "organization": "Northeastern University, Boston, MA, U.S.A",
