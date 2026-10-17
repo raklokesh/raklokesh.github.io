@@ -1,5 +1,22 @@
 const projects = [
     {
+        title: "Interleaving Discrete and Rhythmic Movements when Manipulating Complex Objects",
+        text: `Everyday object manipulation, such as swirling wine in a glass while carrying it, requires complex 
+        movements that can be composed from discrete and rhythmic movement primitives. However, it remains unclear
+        how humans interleave these discrete and rhythmic components when manipulating nonlinear, underactuated systems.
+        We modeled wine-swirling as a ball rolling inside a cup that participants kept
+        swirling while translating the cup to a target. Optimal control simulations showed that only specific 
+        combinations of the ball’s initial angle and the translation duration preserved stable ball swirl during translation. 
+        Experimentally, participants’ ball states at translation onset and their corresponding translation times closely matched 
+        these optimal combinations. These results suggest that humans covary rhythmic and discrete movement components to
+        simplify control and stabilize the dynamics of underactuated objects.`,
+        videoPath: "assets/videos/graphicalabstract_interleavediscreterhythm_ieeebiorob.mp4",
+        publicationLink: "https://doi.org/10.1109/BioRob66782.2026.11681853",
+        publicationText: "Publication Link",
+        pdfLink: "assets/documents/manuscript_discreterhythmcupball_ieeebiorob2026.pdf",
+        pdfText: "Manuscript"
+    },
+    {
         title: "Mechanical Impedance and Stability when Manipulating Complex Objects",
         text: `Manipulating complex objects is ubiquitous in daily activities, such as donning a jacket or carrying a cup of coffee. 
         A key feature of these interactions is mechanical impedance of the human limbs at the interaction port.
